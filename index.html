@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Github Issue Tracker</title>
+  </head>
+  <body class="bg-[#ecf5fc]">
+    <header class="bg-[#E9E9E9]">
+      <div class="flex justify-between items-center mx-24 py-2">
+        <div class="flex items-center gap-2">
+          <img class="w-[34px]" src="./assets/github-logo.png" alt="" />
+          <h1 class="text-2xl font-semibold text-[#1F2937]">GitHub Issues Tracker</h1>
+        </div> 
+        <div class="flex items-center gap-4">
+          <label class="input outline-0">
+            <svg
+              class="h-[1em] opacity-50"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <g
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-width="2.5"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </g>
+            </svg>
+            <input type="search" required placeholder="Search" />
+          </label>
+          <button class="btn btn-primary">Primary</button>
+        </div>
+      </div>
+    </header>
+    <main class="container mx-auto mt-15">
+      <section>
+        <div class="p-3 bg-white">
+          <button class="w-30 border py-2 btn">All</button>
+          <button class="w-30 border py-2 btn">Open</button>
+          <button class="w-30 border py-2 btn">Close</button>
+        </div>
+        <div
+          class="flex justify-between items-center bg-[#FFFFFF] mt-4 p-3 mb-6"
+        >
+          <div class="flex items-center gap-2">
+            <img src="./assets/Aperture.png" alt="" />
+            <div>
+              <h1 class="text-2xl font-bold">50 Issues</h1>
+              <p class="text-[#64748B]">Track and manage your project issues</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <p><span class="rounded-full bg-lime-500 text-green-400">oo</span> Open</p>
+            <p>close</p>
+          </div>
+        </div>
+      </section>
+      <section id="all-cart" class="grid grid-cols-1 md:grid-cols-4 gap-3">
+      </section>
+    </main>
+    <script src="/script/index.js"></script>
+  </body>
+</html>
