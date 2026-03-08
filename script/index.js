@@ -1,8 +1,7 @@
-
-  const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => showGithubCart(data.data));
+const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+fetch(url)
+  .then((res) => res.json())
+  .then((data) => showGithubCart(data.data));
 
 // "status": "success",
 // "message": "Issues fetched successfully",
@@ -24,12 +23,12 @@
 // },
 const showGithubCart = (carts) => {
   const allCart = document.getElementById("all-cart");
-  console.log(allCart);
+  //   console.log(allCart);
   carts.forEach((cart) => {
     const cartSection = document.createElement("div");
-    console.log(cart.status)
+    // console.log(cart);
     cartSection.innerHTML = `
-            <div class="p-4 space-y-3 rounded shadow-md border-t-2 ${cart.status === 'open' ? 'border-t-[#00A96E]': 'border-t-[#A855F7]'} ">
+            <div onclick="handelShowModel(${cart.id})" class="p-4 space-y-3 rounded shadow-md border-t-2 ${cart.status === "open" ? "border-t-[#00A96E]" : "border-t-[#A855F7]"} ">
             <div class="flex justify-between">
               <img src="./assets/Open-Status.png" alt="" />
               <p class="bg-[#FEECEC] px-2 text-[#EF4444] font-medium">HIGH</p>
@@ -57,8 +56,32 @@ const showGithubCart = (carts) => {
               <p class="text-[#64748B]">1/15/2024</p>
             </div>
           </div>
+         
         `;
 
-    allCart.append(cartSection)    
+    allCart.append(cartSection);
   });
+};
+
+// show Model
+
+const handelShowModel = async (id) => {
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  modalDataDetails(data.data);
+};
+
+const modalDataDetails = (data) => {
+    console.log(data);
+  const modelId = document.getElementById("modalDetails");
+  const modelSection = document.createElement("div");
+
+  //   modelSection.innerHTML = `
+
+  //   `;
+
+  //   modelId.append(modelSection);
+  my_modal_5.showModal(data.id);
+  //   console.log(id);
 };

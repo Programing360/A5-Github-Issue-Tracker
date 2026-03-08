@@ -16,8 +16,10 @@
       <div class="flex justify-between items-center mx-24 py-2">
         <div class="flex items-center gap-2">
           <img class="w-[34px]" src="./assets/github-logo.png" alt="" />
-          <h1 class="text-2xl font-semibold text-[#1F2937]">GitHub Issues Tracker</h1>
-        </div> 
+          <h1 class="text-2xl font-semibold text-[#1F2937]">
+            GitHub Issues Tracker
+          </h1>
+        </div>
         <div class="flex items-center gap-4">
           <label class="input outline-0">
             <svg
@@ -60,12 +62,65 @@
             </div>
           </div>
           <div class="flex gap-4">
-            <p><span class="rounded-full bg-lime-500 text-green-400">oo</span> Open</p>
+            <p>
+              <span class="rounded-full bg-lime-500 text-green-400">oo</span>
+              Open
+            </p>
             <p>close</p>
           </div>
         </div>
       </section>
-      <section id="all-cart" class="grid grid-cols-1 md:grid-cols-4 gap-3">
+      <section
+        id="all-cart"
+        class="grid grid-cols-1 md:grid-cols-4 gap-3"
+      ></section>
+      <section id="show-model">
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" >open modal</button> -->
+        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+            <div id="modalDetails">
+              <h1 class="text-2xl font-bold text-[#1F2937] pb-2">Fix broken image uploads</h1>
+              <div class="flex items-center gap-4">
+                <p class="text-white rounded-full p-2 bg-[#00A96E]">Opened</p>
+                <ol class="flex items-center gap-3">
+                  <li class="text-[#64748B] text-[16px]">Opened by Fahim Ahmed</li>
+                  <li class="text-[#64748B] text-[16px]">22/02/2026</li>
+                </ol>
+              </div>
+              <div class="py-8">
+                <span
+                  class="bg-[#FEECEC] px-4 rounded-full text-[#EF4444] font-medium"
+                  >BUG</span
+                >
+                <span
+                  class="bg-[#FFF8DB] px-4 rounded-full text-[#D97706] font-medium"
+                  >HELP WANTED</span
+                >
+              </div>
+              <p class="text-[#64748B] text-[16px] pb-8">
+                The navigation menu doesn't collapse properly on mobile devices.
+                Need to fix the responsive behavior.
+              </p>
+              <div class="flex items-center gap-2 bg-[#f8fafc] p-4">
+                <div class="flex-1">
+                    <h3 class="text-[#64748B] text-[16px]">Assignee</h3>
+                    <p class="text-xl font-semibold text-[#1F2937]">Fahim Ahmed</p>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-[#64748B] text-[16px]">Priority:</h3>
+                    <p class="text-[12px] font-medium text-[#EF4444] rounded-full">HIGH</p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn bg-[#4A00FF] text-white">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
       </section>
     </main>
     <script src="/script/index.js"></script>
