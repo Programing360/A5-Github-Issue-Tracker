@@ -3,166 +3,87 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Application Tracker</title>
+
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="./assets/github-logo.png"
+      type="image/x-icon"
+    />
+    <!-- Tailwind +daisy ui -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5"
       rel="stylesheet"
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
 
-    <title>Github Issue Tracker</title>
+    <style>
+      * {
+        font-family: "Stack Sans Text", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
   </head>
-  <body class="bg-[#ecf5fc]">
-    <header class="bg-[#E9E9E9]">
-      <div class="flex justify-between items-center md:mx-24 py-2">
-        <div class="flex items-center gap-2">
-          <img class="w-[34px]" src="./assets/github-logo.png" alt="" />
-          <h1 class="md:text-2xl font-semibold text-[#1F2937]">
-            GitHub Issues Tracker
-          </h1>
-        </div>
-        <div class="md:flex items-center gap-4 hidden">
-          <label class="input outline-0">
-            <svg
-              class="h-[1em] opacity-50"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <g
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke-width="2.5"
-                fill="none"
-                stroke="currentColor"
-              >
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.3-4.3"></path>
-              </g>
-            </svg>
-            <input
-              type="search"
-              id="search-input"
-              required
-              placeholder="Search"
-            />
-          </label>
-          <button id="btn-search" class="btn btn-primary"><i class="fa-solid fa-plus" style="color: rgb(248, 248, 248);"></i> Search</button>
-        </div>
-      </div>
-      <div class="flex justify-center items-center gap-4 px-4 md:hidden">
-        <label class="input outline-0">
-          <svg
-            class="h-[1em] opacity-50"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <g
-              stroke-linejoin="round"
-              stroke-linecap="round"
-              stroke-width="2.5"
-              fill="none"
-              stroke="currentColor"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.3-4.3"></path>
-            </g>
-          </svg>
-          <input
-            type="search"
-            id="search-input"
-            required
-            placeholder="Search"
-          />
-        </label>
-        <button id="btn-search" class="btn btn-primary">Search</button>
-      </div>
-    </header>
+  <body class="bg-[#f8fafc] min-h-screen flex justify-center items-center">
+    <main>
+      <div class="bg-white w-[520px] mx-auto h-200 shadow-2xl rounded-xl">
+        <div class="flex-col">
+          <div class="text-center">
+            <img class="mx-auto pb-6" src="./assets/github-logo.png" alt="" />
+            <h1 class="text-3xl font-semibold">GitHub Issues Tracker</h1>
+            <p class="py-1">Sign in to manage your issues</p>
+          </div>
+          <div class="bg-base-100 w-[480px] shrink-0 mx-auto">
+            <div class="">
+             
+                <fieldset class="fieldset">
+                  <label class="label">Username</label>
+                  <input
+                  id="userName"
+                    type="text"
+                    class="input w-full outline-0"
+                    placeholder="Enter Username"
+                  />
+                  <p class="text-[#4A00FF] mb-4">Default: Admin</p>
+                  <label class="label">Password</label>
+                  <input
+                  id="userPassword"
+                    type="password"
+                    class="input w-full outline-0"
+                    placeholder="Enter Password"
+                  />
+                  <p class="text-[#4A00FF]">Default: admin123</p>
 
-    <main class="container mx-auto mt-15">
-      <section>
-        <div class="p-3 bg-white">
-          <button
-            onclick="handleAllSection()"
-            id="allBtn"
-            class="w-25 md:w-30 border py-2 btn"
-          >
-            All
-          </button>
-          <button
-            onclick="handleOpenSection()"
-            id="openBtn"
-            class="w-25 md:w-30 border py-2 btn"
-          >
-          
-            Open
-          </button>
-          <button
-            onclick="handleCloseSection()"
-            id="closeBtn"
-            class="w-25 md:w-30 border py-2 btn"
-          >
-          
-            Close
-          </button>
-        </div>
-        <div
-          class="flex justify-between items-center bg-[#FFFFFF] mt-4 p-3 mb-6"
-        >
-          <div class="flex items-center gap-2">
-            <img src="./assets/Aperture.png" alt="" />
-            <div>
-              <h1 class="md:text-2xl font-bold">
-                <span id="totalData">50</span> Issues
-              </h1>
-              <p class="text-[#64748B]">Track and manage your project issues</p>
+                  <button id="login-btn" class="btn bg-[#4a00ff] text-white mt-4 rounded-lg">
+                    Login
+                  </button>
+                </fieldset>
+              
+            </div>
+            <div class="divider">OR</div>
+            <div class="pt-6">
+              <p class="text-[#64748B] text-center mb-2">Demo Credentials:</p>
+              <div class="text-center py-6 bg-[#f8fafc] rounded-lg">
+                <p>Username: admin</p>
+                <p>Password: admin123</p>
+              </div>
             </div>
           </div>
-          <div class="md:flex gap-4">
-            <p>
-              <i class="fa-solid fa-circle-dot " style="color: rgb(0, 169, 110);"></i>
-              Open
-            </p>
-            
-            <p> <i class="fa-solid fa-circle-dot " style="color: rgb(168, 85, 247);"></i> Close</p>
-          </div>
         </div>
-      </section>
-
-      <section id="loading-spinner" class="flex justify-center pt-10 hidden">
-        <span class="loading loading-bars loading-xl"></span>
-      </section>
-      <section
-        id="all-cart"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 px-2"
-      ></section>
-      <section
-        id="open-carts"
-        class="hidden grid grid-cols-1 md:grid-cols-4 gap-3 px-2"
-      ></section>
-      <section
-        id="close-carts"
-        class="hidden grid grid-cols-1 md:grid-cols-4 gap-3 px-2"
-      ></section>
-
-      <section id="show-model">
-        <!-- Open the modal using ID.showModal() method -->
-        <!-- <button class="btn" >open modal</button> -->
-        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-          <div class="modal-box">
-            <div id="modalDetails"></div>
-            <div class="modal-action">
-              <form method="dialog">
-                <!-- if there is a button in form, it will close the modal -->
-                <button class="btn bg-[#4A00FF] text-white">Close</button>
-              </form>
-            </div>
-          </div>
-        </dialog>
-      </section>
+      </div>
     </main>
     <script src="/script/index.js"></script>
   </body>

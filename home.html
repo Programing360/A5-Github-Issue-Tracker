@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <title>Github Issue Tracker</title>
+  </head>
+  <body class="bg-[#ecf5fc]">
+    <header class="bg-[#E9E9E9]">
+      <div class="flex justify-between items-center md:mx-24 py-2">
+        <div class="flex items-center gap-2">
+          <img class="w-[34px]" src="./assets/github-logo.png" alt="" />
+          <h1 class="md:text-2xl font-semibold text-[#1F2937]">
+            GitHub Issues Tracker
+          </h1>
+        </div>
+        <div class="md:flex items-center gap-4 hidden">
+          <label class="input outline-0">
+            <svg
+              class="h-[1em] opacity-50"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <g
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-width="2.5"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </g>
+            </svg>
+            <input
+              type="search"
+              id="search-input"
+              required
+              placeholder="Search"
+            />
+          </label>
+          <button id="btn-search" class="btn btn-primary"><i class="fa-solid fa-plus" style="color: rgb(248, 248, 248);"></i> Search</button>
+        </div>
+      </div>
+      <div class="flex justify-center items-center gap-4 px-4 md:hidden">
+        <label class="input outline-0">
+          <svg
+            class="h-[1em] opacity-50"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke-width="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input
+            type="search"
+            id="search-input"
+            required
+            placeholder="Search"
+          />
+        </label>
+        <button id="btn-search" class="btn btn-primary">Search</button>
+      </div>
+    </header>
+
+    <main class="container mx-auto mt-15">
+      <section>
+        <div class="p-3 bg-white">
+          <button
+            onclick="handleAllSection()"
+            id="allBtn"
+            class="w-25 md:w-30 border py-2 btn"
+          >
+            All
+          </button>
+          <button
+            onclick="handleOpenSection()"
+            id="openBtn"
+            class="w-25 md:w-30 border py-2 btn"
+          >
+          
+            Open
+          </button>
+          <button
+            onclick="handleCloseSection()"
+            id="closeBtn"
+            class="w-25 md:w-30 border py-2 btn"
+          >
+          
+            Close
+          </button>
+        </div>
+        <div
+          class="flex justify-between items-center bg-[#FFFFFF] mt-4 p-3 mb-6"
+        >
+          <div class="flex items-center gap-2">
+            <img src="./assets/Aperture.png" alt="" />
+            <div>
+              <h1 class="md:text-2xl font-bold">
+                <span id="totalData">50</span> Issues
+              </h1>
+              <p class="text-[#64748B]">Track and manage your project issues</p>
+            </div>
+          </div>
+          <div class="md:flex gap-4">
+            <p>
+              <i class="fa-solid fa-circle-dot " style="color: rgb(0, 169, 110);"></i>
+              Open
+            </p>
+            
+            <p> <i class="fa-solid fa-circle-dot " style="color: rgb(168, 85, 247);"></i> Close</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="loading-spinner" class="flex justify-center pt-10 hidden">
+        <span class="loading loading-bars loading-xl"></span>
+      </section>
+      <section
+        id="all-cart"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 px-2"
+      ></section>
+      <section
+        id="open-carts"
+        class="hidden grid grid-cols-1 md:grid-cols-4 gap-3 px-2"
+      ></section>
+      <section
+        id="close-carts"
+        class="hidden grid grid-cols-1 md:grid-cols-4 gap-3 px-2"
+      ></section>
+
+      <section id="show-model">
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" >open modal</button> -->
+        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+            <div id="modalDetails"></div>
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn bg-[#4A00FF] text-white">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </section>
+    </main>
+    <script src="/script/home.js"></script>
+  </body>
+</html>
