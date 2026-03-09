@@ -342,4 +342,21 @@ const closeCartSection = (data) => {
   }
 };
 
+document.getElementById("btn-search").addEventListener("click", () => {
+  const search = document.getElementById("search-input");
+  const searchValue = search.value.trim().toLowerCase();
+  const allCart = document.getElementById("all-cart");
+  allCart.innerHTML = ''
 
+  const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+        const allCart = data.data
+        const filterCart = allCart.filter(cart => {
+            // cart.title.toLowerCase().includes(searchValue)
+           return cart.title.toLowerCase().includes(searchValue)
+        })
+        showGithubCart(filterCart);
+    });
+});
