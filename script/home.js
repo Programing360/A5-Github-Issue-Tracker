@@ -195,6 +195,7 @@ const handleAllSection = () => {
   const closeCart = document.getElementById("close-carts");
   closeCart.classList.add("hidden");
 };
+
 const handleOpenSection = () => {
   const allCart = document.getElementById("all-cart");
   allCart.classList.add("hidden");
@@ -202,6 +203,7 @@ const handleOpenSection = () => {
   const openCart = document.getElementById("open-carts");
   openCart.classList.remove("hidden");
   openCart.innerHTML = "";
+
   const closeCart = document.getElementById("close-carts");
   closeCart.classList.add("hidden");
   const allBtn = document.getElementById("allBtn");
@@ -270,6 +272,14 @@ const openCartSection = (data) => {
 };
 
 const handleCloseSection = () => {
+ 
+  const allCart = document.getElementById("all-cart");
+  console.log(allCart);
+  allCart.classList.add("hidden");
+
+  const openCart = document.getElementById("open-carts");
+  openCart.classList.add("hidden");
+
   const closeCart = document.getElementById("close-carts");
   closeCart.classList.remove("hidden");
   closeCart.innerHTML = "";
@@ -283,11 +293,9 @@ const handleCloseSection = () => {
   const openBtn = document.getElementById("openBtn");
   openBtn.classList.remove("bg-[#4A00FF]", "text-white");
 
-  const allCart = document.getElementById("all-cart");
-  allCart.classList.add("hidden");
+  
 
-  const openCart = document.getElementById("open-carts");
-  openCart.classList.add("hidden");
+  
 loadingSpinner(true)
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   fetch(url)
@@ -342,7 +350,6 @@ const closeCartSection = (data) => {
     closeCarts.append(CloseCartSections);
   }
 };
-
 document.getElementById("btn-search").addEventListener("click", () => {
   const search = document.getElementById("search-input");
   const searchValue = search.value.trim().toLowerCase();
@@ -366,9 +373,9 @@ document.getElementById("btn-search").addEventListener("click", () => {
 const loadingSpinner = (status) => {
   if (status == true) {
     document.getElementById("loading-spinner").classList.remove("hidden");
-    document.getElementById("all-cart").classList.add("hidden");
+    // document.getElementById("all-cart").classList.add("hidden");
   } else {
-    document.getElementById("all-cart").classList.remove("hidden");
+    // document.getElementById("all-cart").classList.remove("hidden");
     document.getElementById("loading-spinner").classList.add("hidden");
   }
 };
