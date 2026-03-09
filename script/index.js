@@ -219,7 +219,55 @@ loadingSpinner(true)
     .then((data) => openCartSection(data.data));
 };
 
+const openCartSection = (data) => {
+  const openCarts = document.getElementById("open-carts");
+  loadingSpinner(false)
+  const openCart = data.filter((cart) => cart.status === "open");
 
+  const totalData = document.getElementById("totalData");
+  totalData.innerText = openCart.length;
+
+  for (const cart of openCart) {
+    const cartSections = document.createElement("div");
+    cartSections.innerHTML = `
+            <div onclick="handelShowModel(${cart.id})" class="h-full p-4 space-y-3 rounded shadow-md border-t-2 ${cart.status === "open" ? "border-t-[#00A96E]" : "border-t-[#A855F7]"} ">
+            <div class="flex justify-between">
+            ${cart.status === "open" ? '<img src="./assets/Open-Status.png" alt="" />' : '<img src="./assets/Closed- Status .png" alt="" />'}
+              
+              <p class="${cart.priority === "low" ? "bg-[#e9eaf0] px-4 text-[#9CA3AF]" : "bg-[#FEECEC] px-4 text-[#EF4444]"} font-medium rounded-full">${cart.priority}</p>
+            </div>
+            <div class="space-y-2">
+              <h1 class="text-lg text-md font-semibold">
+                ${cart.title}
+              </h1>
+              <p class="text-[#64748B]">
+                ${cart.description}
+              </p>
+              <span
+                class="bg-[#FEECEC] px-4 rounded-full text-[#EF4444] font-medium"
+                ><i class="fa-solid fa-bug" style="color: rgb(239, 68, 68);"></i> ${cart.labels[0]}</span
+              >
+              ${
+                cart.labels[1] !== undefined
+                  ? `<span
+                class="bg-[#FFF8DB] px-4 rounded-full text-[#D97706] font-medium"
+                ><i class="fa-regular fa-life-ring" style="color: rgb(219, 127, 19)"></i> ${cart.labels[1]}</span
+              >`
+                  : ""
+              }
+            </div>
+            <hr class="text-gray-300"/>
+            <div>
+              <p class="text-[#64748B]">#1 by ${cart.author}</p>
+              <p class="text-[#64748B]">${new Date(cart.updatedAt).toLocaleDateString()}</p>
+            </div>
+          </div>
+         
+        `;
+
+    openCarts.append(cartSections);
+  }
+};
 
 const handleCloseSection = () => {
   const closeCart = document.getElementById("close-carts");
