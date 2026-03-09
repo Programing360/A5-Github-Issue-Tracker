@@ -106,7 +106,6 @@ const handelShowModel = async (id) => {
 };
 
 const modalDataDetails = (data) => {
-  console.log(data);
   const modelId = document.getElementById("modalDetails");
   modelId.innerHTML = "";
   const modelSection = document.createElement("div");
@@ -168,12 +167,14 @@ const modalDataDetails = (data) => {
 
 // btn style
 const handleAllSection = () => {
+  loadingSpinner(true)
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
       const totalData = document.getElementById("totalData");
       totalData.innerText = data.data.length;
+      loadingSpinner(false)
     });
 
   const allCart = document.getElementById("all-cart");
@@ -211,62 +212,14 @@ const handleOpenSection = () => {
 
   const closeBtn = document.getElementById("closeBtn");
   closeBtn.classList.remove("bg-[#4A00FF]", "text-white");
-
+loadingSpinner(true)
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   fetch(url)
     .then((res) => res.json())
     .then((data) => openCartSection(data.data));
 };
 
-const openCartSection = (data) => {
-  const openCarts = document.getElementById("open-carts");
 
-  const openCart = data.filter((cart) => cart.status === "open");
-
-  const totalData = document.getElementById("totalData");
-  totalData.innerText = openCart.length;
-
-  for (const cart of openCart) {
-    const cartSections = document.createElement("div");
-    cartSections.innerHTML = `
-            <div onclick="handelShowModel(${cart.id})" class="h-full p-4 space-y-3 rounded shadow-md border-t-2 ${cart.status === "open" ? "border-t-[#00A96E]" : "border-t-[#A855F7]"} ">
-            <div class="flex justify-between">
-            ${cart.status === "open" ? '<img src="./assets/Open-Status.png" alt="" />' : '<img src="./assets/Closed- Status .png" alt="" />'}
-              
-              <p class="${cart.priority === "low" ? "bg-[#e9eaf0] px-4 text-[#9CA3AF]" : "bg-[#FEECEC] px-4 text-[#EF4444]"} font-medium rounded-full">${cart.priority}</p>
-            </div>
-            <div class="space-y-2">
-              <h1 class="text-lg text-md font-semibold">
-                ${cart.title}
-              </h1>
-              <p class="text-[#64748B]">
-                ${cart.description}
-              </p>
-              <span
-                class="bg-[#FEECEC] px-4 rounded-full text-[#EF4444] font-medium"
-                ><i class="fa-solid fa-bug" style="color: rgb(239, 68, 68);"></i> ${cart.labels[0]}</span
-              >
-              ${
-                cart.labels[1] !== undefined
-                  ? `<span
-                class="bg-[#FFF8DB] px-4 rounded-full text-[#D97706] font-medium"
-                ><i class="fa-regular fa-life-ring" style="color: rgb(219, 127, 19)"></i> ${cart.labels[1]}</span
-              >`
-                  : ""
-              }
-            </div>
-            <hr class="text-gray-300"/>
-            <div>
-              <p class="text-[#64748B]">#1 by ${cart.author}</p>
-              <p class="text-[#64748B]">${new Date(cart.updatedAt).toLocaleDateString()}</p>
-            </div>
-          </div>
-         
-        `;
-
-    openCarts.append(cartSections);
-  }
-};
 
 const handleCloseSection = () => {
   const closeCart = document.getElementById("close-carts");
@@ -287,7 +240,7 @@ const handleCloseSection = () => {
 
   const openCart = document.getElementById("open-carts");
   openCart.classList.add("hidden");
-
+loadingSpinner(true)
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   fetch(url)
     .then((res) => res.json())
@@ -296,7 +249,7 @@ const handleCloseSection = () => {
 
 const closeCartSection = (data) => {
   const closeCarts = document.getElementById("close-carts");
-
+  loadingSpinner(false)
   const closeCart = data.filter((cart) => cart.status === "closed");
   const totalData = document.getElementById("totalData");
   totalData.innerText = closeCart.length;
@@ -346,17 +299,28 @@ document.getElementById("btn-search").addEventListener("click", () => {
   const search = document.getElementById("search-input");
   const searchValue = search.value.trim().toLowerCase();
   const allCart = document.getElementById("all-cart");
-  allCart.innerHTML = ''
-
+  allCart.innerHTML = "";
+  loadingSpinner(true)
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-        const allCart = data.data
-        const filterCart = allCart.filter(cart => {
-            // cart.title.toLowerCase().includes(searchValue)
-           return cart.title.toLowerCase().includes(searchValue)
-        })
-        showGithubCart(filterCart);
+      const allCart = data.data;
+      loadingSpinner(false)
+      const filterCart = allCart.filter((cart) => {
+        // cart.title.toLowerCase().includes(searchValue)
+        return cart.title.toLowerCase().includes(searchValue);
+      });
+      showGithubCart(filterCart);
     });
 });
+
+const loadingSpinner = (status) => {
+  if (status == true) {
+    document.getElementById("loading-spinner").classList.remove("hidden");
+    document.getElementById("all-cart").classList.add("hidden");
+  } else {
+    document.getElementById("all-cart").classList.remove("hidden");
+    document.getElementById("loading-spinner").classList.add("hidden");
+  }
+};
